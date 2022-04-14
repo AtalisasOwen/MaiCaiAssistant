@@ -1,6 +1,8 @@
 package com.univerindream.maicaiassistant
 
 object MHDefault {
+ 
+    val defaultMHSolutions = arrayListOf(
 MHSolution(
     name = "美团抢购 - 自动选择送达时间 - 极速支付",
     steps = arrayListOf(
@@ -147,8 +149,6 @@ MHSolution(
         ),
     )
 ),
-    val defaultMHSolutions = arrayListOf(
-
         MHSolution(
             name = "美团抢购 - 自动选择送达时间 - 支付宝",
             steps = arrayListOf(
