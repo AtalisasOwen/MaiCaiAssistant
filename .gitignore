@@ -1,4 +1,4 @@
-*.jks
+# *.jks
 ### Kotlin template
 # Compiled class file
 *.class
