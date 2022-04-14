@@ -1,8 +1,154 @@
 package com.univerindream.maicaiassistant
 
 object MHDefault {
-
+MHSolution(
+    name = "美团抢购 - 自动选择送达时间 - 极速支付",
+    steps = arrayListOf(
+        MCStep(
+            "打开 app",
+            condList = arrayListOf(
+                MCCond(
+                    EMCCond.APP_IS_BACKGROUND,
+                    MCNode(EMCSearch.PACKAGE_NAME, packageName = "com.meituan.retail.v.android")
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.LAUNCH,
+                delay = 500,
+                nodes = arrayListOf(
+                    MCNode(EMCSearch.PACKAGE_NAME, packageName = "com.meituan.retail.v.android"),
+                )
+            )
+        ),
+        MCStep(
+            "点击跳过",
+            condList = arrayListOf(
+                MCCond(
+                    EMCCond.EQ_CLASS_NAME,
+                    MCNode(
+                        EMCSearch.CLASSNAME,
+                        className = "com.meituan.retail.c.android.splash.SplashActivity"
+                    )
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.CLICK_NODE,
+                delay = 500,
+                nodes = arrayListOf(MCNode(EMCSearch.TXT, "跳过"))
+            )
+        ),
+        MCStep(
+            "点击购物车",
+            condList = arrayListOf(
+                MCCond(
+                    EMCCond.NODE_EXIST,
+                    MCNode(EMCSearch.ID, "com.meituan.retail.v.android:id/img_shopping_cart")
+                ),
+                MCCond(
+                    EMCCond.NODE_NOT_SELECTED,
+                    MCNode(EMCSearch.ID, "com.meituan.retail.v.android:id/img_shopping_cart")
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.CLICK_NODE,
+                delay = 500,
+                nodes = arrayListOf(MCNode(EMCSearch.ID, "com.meituan.retail.v.android:id/img_shopping_cart"))
+            )
+        ),
+        MCStep(
+            "点击我知道了",
+            arrayListOf(
+                MCCond(
+                    EMCCond.NODE_CAN_CLICK,
+                    MCNode(EMCSearch.TXT, "我知道了")
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.CLICK_NODE,
+                nodes = arrayListOf(
+                    MCNode(EMCSearch.TXT, "我知道了"),
+                )
+            )
+        ),
+        MCStep(
+            "点击返回购物车",
+            arrayListOf(
+                MCCond(
+                    EMCCond.NODE_CAN_CLICK,
+                    MCNode(EMCSearch.TXT, "返回购物车")
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.CLICK_NODE,
+                nodes = arrayListOf(
+                    MCNode(EMCSearch.TXT, "返回购物车"),
+                )
+            )
+        ),
+        MCStep(
+            "点击结算",
+            arrayListOf(
+                MCCond(
+                    EMCCond.NODE_CAN_CLICK,
+                    MCNode(EMCSearch.TXT, "结算")
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.CLICK_NODE,
+                nodes = arrayListOf(MCNode(EMCSearch.TXT, "结算"))
+            ),
+        ),
+        MCStep(
+            "极速支付",
+            arrayListOf(
+                MCCond(
+                    EMCCond.NODE_CAN_CLICK,
+                    MCNode(EMCSearch.TXT, "极速支付")
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.CLICK_NODE,
+                delay = 100,
+                nodes = arrayListOf(MCNode(EMCSearch.TXT, "极速支付"))
+            ),
+        ),
+        MCStep(
+            "自动选择送达时间",
+            arrayListOf(
+                MCCond(
+                    EMCCond.NODE_EXIST,
+                    MCNode(EMCSearch.TXT, "选择送达时间")
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.CLICK_RANDOM_NODE,
+                nodes = arrayListOf(
+                    MCNode(EMCSearch.TXT, "-"),
+                )
+            ),
+        ),
+        MCStep(
+            "确认支付",
+            arrayListOf(
+                MCCond(
+                    EMCCond.NODE_EXIST,
+                    MCNode(EMCSearch.TXT, "提交订单")
+                ),
+                MCCond(
+                    EMCCond.NODE_CAN_CLICK,
+                    MCNode(EMCSearch.TXT, "极速支付")
+                )
+            ),
+            handle = MCHandle(
+                type = EMCHandle.CLICK_NODE,
+                delay = 100,
+                nodes = arrayListOf(MCNode(EMCSearch.TXT, "极速支付"))
+            ),
+        ),
+    )
+),
     val defaultMHSolutions = arrayListOf(
+
         MHSolution(
             name = "美团抢购 - 自动选择送达时间 - 支付宝",
             steps = arrayListOf(
